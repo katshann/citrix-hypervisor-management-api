@@ -3540,6 +3540,16 @@ _Signature:_
 VDI_IS_A_PHYSICAL_DEVICE(vdi)
 ```
 
+### VDI&#95;IS&#95;ENCRYPTED
+
+The requested operation is not allowed because the specified VDI is encrypted.
+
+_Signature:_
+
+```
+VDI_IS_ENCRYPTED(vdi)
+```
+
 ### VDI&#95;IS&#95;NOT&#95;ISO
 
 This operation can only be performed on CD VDIs &#40;iso files or CDROM drives&#41;
@@ -3644,6 +3654,16 @@ _Signature:_
 
 ```
 VDI_READONLY(vdi)
+```
+
+### VDI&#95;TOO&#95;LARGE
+
+The VDI is too large.
+
+_Signature:_
+
+```
+VDI_TOO_LARGE(vdi, maximum size)
 ```
 
 ### VDI&#95;TOO&#95;SMALL
@@ -3874,6 +3894,16 @@ _Signature:_
 
 ```
 VM_FAILED_SHUTDOWN_ACKNOWLEDGMENT(vm)
+```
+
+### VM&#95;FAILED&#95;SUSPEND&#95;ACKNOWLEDGMENT
+
+VM didn't acknowledge the need to suspend.
+
+_Signature:_
+
+```
+VM_FAILED_SUSPEND_ACKNOWLEDGMENT(vm)
 ```
 
 ### VM&#95;HALTED
@@ -4350,6 +4380,16 @@ _Signature:_
 
 ```
 VM_SNAPSHOT_WITH_QUIESCE_TIMEOUT(vm)
+```
+
+### VM&#95;SUSPEND&#95;TIMEOUT
+
+VM failed to suspend before the timeout expired
+
+_Signature:_
+
+```
+VM_SUSPEND_TIMEOUT(vm, timeout)
 ```
 
 ### VM&#95;TOO&#95;MANY&#95;VCPUS
