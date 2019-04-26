@@ -23,7 +23,7 @@ theme:
     code: Roboto Mono
   favicon: /media/favicon.ico
   logo: https://developer-docs.citrix.com/_static/Citrix_Logo_Black.png
-  
+
 extra:
   social:
     - type: youtube
@@ -43,7 +43,7 @@ markdown_extensions:
   - meta
 
 nav:
-- Citrix XenServer 7.6 CR Management API Reference: index.md
+- Citrix Hypervisor 8.0 CR Management API Reference: index.md
 - Wire Protocol for Remote API Calls: wire-protocol.md
 - VM Lifecycle: vm-lifecycle.md
 - API Reference: api-ref-autogen.md

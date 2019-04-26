@@ -1,8 +1,6 @@
-# Citrix XenServer 7.6 CR Management API
+# Citrix Hypervisor 8.0 CR Management API
 
-## API Revision 2.11
-
-This document defines the XenServer Management API - an interface for remotely
+This document defines the Citrix Hypervisor Management API - an interface for remotely
 configuring and controlling virtualised guests running on a Xen-enabled host.
 
 The API is presented here as a set of Remote Procedure Calls (RPCs). There are
