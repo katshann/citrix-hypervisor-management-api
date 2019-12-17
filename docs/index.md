@@ -1,4 +1,4 @@
-# Citrix Hypervisor 8.0 CR Management API
+# Citrix Hypervisor 8.1 Management API
 
 This document defines the Citrix Hypervisor Management API - an interface for remotely
 configuring and controlling virtualised guests running on a Xen-enabled host.
