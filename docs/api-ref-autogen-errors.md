@@ -132,7 +132,7 @@ ADDRESS_VIOLATES_LOCKING_CONSTRAINT(address)
 
 ### AUTH&#95;ALREADY&#95;ENABLED
 
-External authentication for this host is already enabled.
+External authentication for this server is already enabled.
 
 _Signature:_
 
@@ -368,7 +368,7 @@ CANNOT_CHANGE_PIF_PROPERTIES(PIF)
 
 ### CANNOT&#95;CONTACT&#95;HOST
 
-Cannot forward messages because the host cannot be contacted.  The host may be switched off or there may be network connectivity problems.
+Cannot forward messages because the server cannot be contacted. The server may be switched off or there may be network connectivity problems.
 
 _Signature:_
 
@@ -414,7 +414,7 @@ CANNOT_ENABLE_REDO_LOG(reason)
 
 ### CANNOT&#95;EVACUATE&#95;HOST
 
-This host cannot be evacuated.
+This server cannot be evacuated.
 
 _Signature:_
 
@@ -424,7 +424,7 @@ CANNOT_EVACUATE_HOST(errors)
 
 ### CANNOT&#95;FETCH&#95;PATCH
 
-The requested update could to be obtained from the master.
+The requested update could not be obtained from the master.
 
 _Signature:_
 
@@ -434,13 +434,13 @@ CANNOT_FETCH_PATCH(uuid)
 
 ### CANNOT&#95;FIND&#95;OEM&#95;BACKUP&#95;PARTITION
 
-The backup partition to stream the updat to cannot be found
+The backup partition to stream the update to cannot be found.
 
 No parameters.
 
 ### CANNOT&#95;FIND&#95;PATCH
 
-The requested update could not be found.  This can occur when you designate a new master or xe patch&#45;clean.  Please upload the update again
+The requested update could not be found. This can occur when you designate a new master or xe patch&#45;clean. Please upload the update again.
 
 No parameters.
 
@@ -452,7 +452,7 @@ No parameters.
 
 ### CANNOT&#95;FIND&#95;UPDATE
 
-The requested update could not be found. Please upload the update again. This can occur when you run xe update&#45;pool&#45;clean before xe update&#45;apply. 
+The requested update could not be found. Please upload the update again. This can occur when you run xe update&#45;pool&#45;clean before xe update&#45;apply.
 
 No parameters.
 
@@ -964,7 +964,7 @@ GPU_GROUP_CONTAINS_VGPU(vgpus)
 
 ### HANDLE&#95;INVALID
 
-You gave an invalid object reference.  The object may have recently been deleted.  The class parameter gives the type of reference given, and the handle parameter echoes the bad value given.
+You gave an invalid object reference. The object may have recently been deleted. The class parameter gives the type of reference given, and the handle parameter echoes the bad value given.
 
 _Signature:_
 
@@ -974,7 +974,7 @@ HANDLE_INVALID(class, handle)
 
 ### HA&#95;ABORT&#95;NEW&#95;MASTER
 
-This host cannot accept the proposed new master setting at this time.
+This server cannot accept the proposed new master setting at this time.
 
 _Signature:_
 
@@ -1028,19 +1028,19 @@ No parameters.
 
 ### HA&#95;HEARTBEAT&#95;DAEMON&#95;STARTUP&#95;FAILED
 
-The host could not join the liveset because the HA daemon failed to start.
+The server could not join the liveset because the HA daemon failed to start.
 
 No parameters.
 
 ### HA&#95;HOST&#95;CANNOT&#95;ACCESS&#95;STATEFILE
 
-The host could not join the liveset because the HA daemon could not access the heartbeat disk.
+The server could not join the liveset because the HA daemon could not access the heartbeat disk.
 
 No parameters.
 
 ### HA&#95;HOST&#95;CANNOT&#95;SEE&#95;PEERS
 
-The operation failed because the HA software on the specified host could not see a subset of other hosts. Check your network connectivity.
+The operation failed because the HA software on the specified server could not see a subset of other servers. Check your network connectivity.
 
 _Signature:_
 
@@ -1050,7 +1050,7 @@ HA_HOST_CANNOT_SEE_PEERS(host, all, subset)
 
 ### HA&#95;HOST&#95;IS&#95;ARMED
 
-The operation could not be performed while the host is still armed; it must be disarmed first
+The operation could not be performed while the server is still armed; it must be disarmed first.
 
 _Signature:_
 
@@ -1066,7 +1066,7 @@ No parameters.
 
 ### HA&#95;LOST&#95;STATEFILE
 
-This host lost access to the HA statefile.
+This server lost access to the HA statefile.
 
 No parameters.
 
@@ -1078,7 +1078,7 @@ No parameters.
 
 ### HA&#95;NOT&#95;INSTALLED
 
-The operation could not be performed because the HA software is not installed on this host.
+The operation could not be performed because the HA software is not installed on this server.
 
 _Signature:_
 
@@ -1088,7 +1088,7 @@ HA_NOT_INSTALLED(host)
 
 ### HA&#95;NO&#95;PLAN
 
-Cannot find a plan for placement of VMs as there are no other hosts available.
+Cannot find a plan for placement of VMs as there are no other servers available.
 
 No parameters.
 
@@ -1100,13 +1100,13 @@ No parameters.
 
 ### HA&#95;POOL&#95;IS&#95;ENABLED&#95;BUT&#95;HOST&#95;IS&#95;DISABLED
 
-This host cannot join the pool because the pool has HA enabled but this host has HA disabled.
+This server cannot join the pool because the pool has HA enabled but this server has HA disabled.
 
 No parameters.
 
 ### HA&#95;SHOULD&#95;BE&#95;FENCED
 
-Host cannot rejoin pool because it should have fenced &#40;it is not in the master's partition&#41;
+Server cannot rejoin pool because it should have fenced &#40;it is not in the master's partition&#41;.
 
 _Signature:_
 
@@ -1116,7 +1116,7 @@ HA_SHOULD_BE_FENCED(host)
 
 ### HA&#95;TOO&#95;FEW&#95;HOSTS
 
-HA can only be enabled for 2 hosts or more. Note that 2 hosts requires a pre&#45;configured quorum tiebreak script.
+HA can only be enabled for 2 servers or more. Note that 2 servers requires a pre&#45;configured quorum tiebreak script.
 
 No parameters.
 
@@ -1138,13 +1138,13 @@ HOSTS_NOT_HOMOGENEOUS(reason)
 
 ### HOST&#95;BROKEN
 
-This host failed in the middle of an automatic failover operation and needs to retry the failover action
+This server failed in the middle of an automatic failover operation and needs to retry the failover action.
 
 No parameters.
 
 ### HOST&#95;CANNOT&#95;ATTACH&#95;NETWORK
 
-Host cannot attach network &#40;in the case of NIC bonding, this may be because attaching the network on this host would require other networks &#91;that are currently active&#93; to be taken down&#41;.
+Server cannot attach network &#40;in the case of NIC bonding, this may be because attaching the network on this server would require other networks &#45; that are currently active &#45; to be taken down&#41;.
 
 _Signature:_
 
@@ -1164,7 +1164,7 @@ HOST_CANNOT_DESTROY_SELF(host)
 
 ### HOST&#95;CANNOT&#95;READ&#95;METRICS
 
-The metrics of this host could not be read.
+The metrics of this server could not be read.
 
 No parameters.
 
@@ -1176,7 +1176,7 @@ No parameters.
 
 ### HOST&#95;DISABLED
 
-The specified host is disabled.
+The specified server is disabled.
 
 _Signature:_
 
@@ -1186,7 +1186,7 @@ HOST_DISABLED(host)
 
 ### HOST&#95;DISABLED&#95;UNTIL&#95;REBOOT
 
-The specified host is disabled and cannot be re&#45;enabled until after it has rebooted.
+The specified server is disabled and cannot be re&#45;enabled until after it has rebooted.
 
 _Signature:_
 
@@ -1206,13 +1206,13 @@ HOST_EVACUATE_IN_PROGRESS(host)
 
 ### HOST&#95;HAS&#95;NO&#95;MANAGEMENT&#95;IP
 
-The host failed to acquire an IP address on its management interface and therefore cannot contact the master.
+The server failed to acquire an IP address on its management interface and therefore cannot contact the master.
 
 No parameters.
 
 ### HOST&#95;HAS&#95;RESIDENT&#95;VMS
 
-This host cannot be forgotten because there are some user VMs still running
+This server cannot be forgotten because there are user VMs still running.
 
 _Signature:_
 
@@ -1238,7 +1238,7 @@ HOST_IN_USE(host, type, ref)
 
 ### HOST&#95;IS&#95;LIVE
 
-This operation cannot be completed as the host is still live.
+This operation cannot be completed because the server is still live.
 
 _Signature:_
 
@@ -1274,7 +1274,7 @@ HOST_MASTER_CANNOT_TALK_BACK(ip)
 
 ### HOST&#95;NAME&#95;INVALID
 
-The host name is invalid.
+The server name is invalid.
 
 _Signature:_
 
@@ -1290,7 +1290,7 @@ No parameters.
 
 ### HOST&#95;NOT&#95;ENOUGH&#95;FREE&#95;MEMORY
 
-Not enough host memory is available to perform this operation
+Not enough server memory is available to perform this operation.
 
 _Signature:_
 
@@ -1310,7 +1310,7 @@ HOST_NOT_ENOUGH_PCPUS(vcpus, pcpus)
 
 ### HOST&#95;NOT&#95;LIVE
 
-This operation cannot be completed as the host is not live.
+This operation cannot be completed as the server is not live.
 
 No parameters.
 
@@ -1326,7 +1326,7 @@ HOST_OFFLINE(host)
 
 ### HOST&#95;POWER&#95;ON&#95;MODE&#95;DISABLED
 
-This operation cannot be completed as the host power on mode is disabled.
+This operation cannot be completed because the server power on mode is disabled.
 
 No parameters.
 
@@ -1454,7 +1454,7 @@ INTERFACE_HAS_NO_IP(interface)
 
 ### INTERNAL&#95;ERROR
 
-The server failed to handle your request, due to an internal error.  The given message may give details useful for debugging the problem.
+The server failed to handle your request, due to an internal error. The given message may give details useful for debugging the problem.
 
 _Signature:_
 
@@ -1530,7 +1530,7 @@ No parameters.
 
 ### INVALID&#95;PATCH&#95;WITH&#95;LOG
 
-The uploaded patch file is invalid.  See attached log for more details.
+The uploaded patch file is invalid. See attached log for more details.
 
 _Signature:_
 
@@ -1560,7 +1560,7 @@ INVALID_VALUE(field, value)
 
 ### IS&#95;TUNNEL&#95;ACCESS&#95;PIF
 
-You tried to create a VLAN or tunnel on top of a tunnel access PIF &#45; use the underlying transport PIF instead.
+Cannot create a VLAN or tunnel on top of a tunnel access PIF &#45; use the underlying transport PIF instead.
 
 _Signature:_
 
@@ -1570,25 +1570,25 @@ IS_TUNNEL_ACCESS_PIF(PIF)
 
 ### JOINING&#95;HOST&#95;CANNOT&#95;BE&#95;MASTER&#95;OF&#95;OTHER&#95;HOSTS
 
-The host joining the pool cannot already be a master of another pool.
+The server joining the pool cannot already be a master of another pool.
 
 No parameters.
 
 ### JOINING&#95;HOST&#95;CANNOT&#95;CONTAIN&#95;SHARED&#95;SRS
 
-The host joining the pool cannot contain any shared storage.
+The server joining the pool cannot contain any shared storage.
 
 No parameters.
 
 ### JOINING&#95;HOST&#95;CANNOT&#95;HAVE&#95;RUNNING&#95;OR&#95;SUSPENDED&#95;VMS
 
-The host joining the pool cannot have any running or suspended VMs.
+The server joining the pool cannot have any running or suspended VMs.
 
 No parameters.
 
 ### JOINING&#95;HOST&#95;CANNOT&#95;HAVE&#95;RUNNING&#95;VMS
 
-The host joining the pool cannot have any running VMs.
+The server joining the pool cannot have any running VMs.
 
 No parameters.
 
@@ -1606,13 +1606,13 @@ No parameters.
 
 ### JOINING&#95;HOST&#95;SERVICE&#95;FAILED
 
-There was an error connecting to the host. the service contacted didn't reply properly.
+There was an error connecting to the server. The service contacted didn't reply properly.
 
 No parameters.
 
 ### LICENCE&#95;RESTRICTION
 
-This operation is not allowed because your license lacks a needed feature.  Please contact your support representative.
+This operation is not allowed because your license lacks a needed feature. Please contact your support representative.
 
 _Signature:_
 
@@ -1638,25 +1638,25 @@ LICENSE_CHECKOUT_ERROR(reason)
 
 ### LICENSE&#95;DOES&#95;NOT&#95;SUPPORT&#95;POOLING
 
-This host cannot join a pool because its license does not support pooling.
+This server cannot join a pool because its license does not support pooling.
 
 No parameters.
 
 ### LICENSE&#95;DOES&#95;NOT&#95;SUPPORT&#95;XHA
 
-XHA cannot be enabled because this host's license does not allow it.
+HA cannot be enabled because this server's license does not allow it.
 
 No parameters.
 
 ### LICENSE&#95;EXPIRED
 
-Your license has expired.  Please contact your support representative.
+Your license has expired. Please contact your support representative.
 
 No parameters.
 
 ### LICENSE&#95;FILE&#95;DEPRECATED
 
-This license file is no longer accepted. Please upgrade to the new licensing system.
+This type of license file is for previous versions of the server. Please upgrade to the new licensing system.
 
 No parameters.
 
@@ -1668,7 +1668,7 @@ No parameters.
 
 ### LICENSE&#95;PROCESSING&#95;ERROR
 
-There was an error processing your license.  Please contact your support representative.
+There was an error processing your license. Please contact your support representative.
 
 No parameters.
 
@@ -1684,7 +1684,7 @@ LOCATION_NOT_UNIQUE(SR, location)
 
 ### MAC&#95;DOES&#95;NOT&#95;EXIST
 
-The MAC address specified doesn't exist on this host.
+The MAC address specified does not exist on this server.
 
 _Signature:_
 
@@ -1704,7 +1704,7 @@ MAC_INVALID(MAC)
 
 ### MAC&#95;STILL&#95;EXISTS
 
-The MAC address specified still exists on this host.
+The MAC address specified still exists on this server.
 
 _Signature:_
 
@@ -1740,7 +1740,7 @@ No parameters.
 
 ### MESSAGE&#95;METHOD&#95;UNKNOWN
 
-You tried to call a method that does not exist.  The method name that you used is echoed.
+You tried to call a method that does not exist. The method name that you used is echoed.
 
 _Signature:_
 
@@ -1750,7 +1750,7 @@ MESSAGE_METHOD_UNKNOWN(method)
 
 ### MESSAGE&#95;PARAMETER&#95;COUNT&#95;MISMATCH
 
-You tried to call a method with the incorrect number of parameters.  The fully&#45;qualified method name that you used, and the number of received and expected parameters are returned.
+You tried to call a method with the incorrect number of parameters. The fully&#45;qualified method name that you used, and the number of received and expected parameters are returned.
 
 _Signature:_
 
@@ -1994,7 +1994,7 @@ NO_CLUSTER_HOSTS_REACHABLE(cluster)
 
 ### NO&#95;COMPATIBLE&#95;CLUSTER&#95;HOST
 
-The host does not have a Cluster&#95;host with a compatible cluster stack.
+Clustering is not enabled on this host or pool.
 
 _Signature:_
 
@@ -2004,7 +2004,7 @@ NO_COMPATIBLE_CLUSTER_HOST(host)
 
 ### NO&#95;HOSTS&#95;AVAILABLE
 
-There were no hosts available to complete the specified operation.
+There were no servers available to complete the specified operation.
 
 No parameters.
 
@@ -2096,16 +2096,6 @@ _Signature:_
 OUT_OF_SPACE(location)
 ```
 
-### PASSTHROUGH&#95;NOT&#95;ENABLED
-
-The passthrough&#95;enabled must be true before passthrough usb to vm.
-
-_Signature:_
-
-```
-PASSTHROUGH_NOT_ENABLED(PUSB)
-```
-
 ### PATCH&#95;ALREADY&#95;APPLIED
 
 This patch has already been applied
@@ -2128,7 +2118,7 @@ PATCH_ALREADY_EXISTS(uuid)
 
 ### PATCH&#95;APPLY&#95;FAILED
 
-The patch apply failed.  Please see attached output.
+The patch apply failed. Please see attached output.
 
 _Signature:_
 
@@ -2164,7 +2154,7 @@ PATCH_PRECHECK_FAILED_ISO_MOUNTED(patch)
 
 ### PATCH&#95;PRECHECK&#95;FAILED&#95;OUT&#95;OF&#95;SPACE
 
-The patch precheck stage failed: the server does not have enough space.
+The patch pre&#45;check stage failed: the server does not have enough space.
 
 _Signature:_
 
@@ -2174,7 +2164,7 @@ PATCH_PRECHECK_FAILED_OUT_OF_SPACE(patch, found_space, required_required)
 
 ### PATCH&#95;PRECHECK&#95;FAILED&#95;PREREQUISITE&#95;MISSING
 
-The patch precheck stage failed: prerequisite patches are missing.
+The patch pre&#45;check stage failed: prerequisite patches are missing.
 
 _Signature:_
 
@@ -2184,7 +2174,7 @@ PATCH_PRECHECK_FAILED_PREREQUISITE_MISSING(patch, prerequisite_patch_uuid_list)
 
 ### PATCH&#95;PRECHECK&#95;FAILED&#95;UNKNOWN&#95;ERROR
 
-The patch precheck stage failed with an unknown error.  See attached info for more details.
+The patch pre&#45;check stage failed with an unknown error. See attached info for more details.
 
 _Signature:_
 
@@ -2194,7 +2184,7 @@ PATCH_PRECHECK_FAILED_UNKNOWN_ERROR(patch, info)
 
 ### PATCH&#95;PRECHECK&#95;FAILED&#95;VM&#95;RUNNING
 
-The patch precheck stage failed: there are one or more VMs still running on the server.  All VMs must be suspended before the patch can be applied.
+The patch pre&#45;check stage failed: there are one or more VMs still running on the server. All VMs must be suspended before the patch can be applied.
 
 _Signature:_
 
@@ -2204,7 +2194,7 @@ PATCH_PRECHECK_FAILED_VM_RUNNING(patch)
 
 ### PATCH&#95;PRECHECK&#95;FAILED&#95;WRONG&#95;SERVER&#95;BUILD
 
-The patch precheck stage failed: the server is of an incorrect build.
+The patch pre&#45;check stage failed: the server is of an incorrect build.
 
 _Signature:_
 
@@ -2214,7 +2204,7 @@ PATCH_PRECHECK_FAILED_WRONG_SERVER_BUILD(patch, found_build, required_build)
 
 ### PATCH&#95;PRECHECK&#95;FAILED&#95;WRONG&#95;SERVER&#95;VERSION
 
-The patch precheck stage failed: the server is of an incorrect version.
+The patch pre&#45;check stage failed: the server is of an incorrect version.
 
 _Signature:_
 
@@ -2224,7 +2214,7 @@ PATCH_PRECHECK_FAILED_WRONG_SERVER_VERSION(patch, found_version, required_versio
 
 ### PBD&#95;EXISTS
 
-A PBD already exists connecting the SR to the host
+A PBD already exists connecting the SR to the server.
 
 _Signature:_
 
@@ -2306,7 +2296,7 @@ No parameters.
 
 ### PIF&#95;CANNOT&#95;BOND&#95;CROSS&#95;HOST
 
-You cannot bond interfaces across different hosts.
+You cannot bond interfaces across different servers.
 
 No parameters.
 
@@ -2408,7 +2398,7 @@ PIF_IS_NOT_SRIOV_CAPABLE(PIF)
 
 ### PIF&#95;IS&#95;PHYSICAL
 
-You tried to destroy a PIF, but it represents an aspect of the physical host configuration, and so cannot be destroyed.  The parameter echoes the PIF handle you gave.
+You tried to destroy a PIF, but it represents an aspect of the physical host configuration, and so cannot be destroyed. The parameter echoes the PIF handle you gave.
 
 _Signature:_
 
@@ -2508,7 +2498,7 @@ PIF_VLAN_STILL_EXISTS(PIF)
 
 ### POOL&#95;AUTH&#95;ALREADY&#95;ENABLED
 
-External authentication in this pool is already enabled for at least one host.
+External authentication is already enabled for at least one server in this pool.
 
 _Signature:_
 
@@ -2678,7 +2668,7 @@ POOL_JOINING_HOST_MANAGEMENT_VLAN_DOES_NOT_MATCH(local, remote)
 
 ### POOL&#95;JOINING&#95;HOST&#95;MUST&#95;HAVE&#95;PHYSICAL&#95;MANAGEMENT&#95;NIC
 
-The host joining the pool must have a physical management NIC &#40;i.e. the management NIC must not be on a VLAN or bonded PIF&#41;.
+The server joining the pool must have a physical management NIC &#40;i.e. the management NIC must not be on a VLAN or bonded PIF&#41;.
 
 No parameters.
 
@@ -2704,7 +2694,7 @@ POOL_JOINING_HOST_MUST_HAVE_SAME_DB_SCHEMA(host_db_schema, master_db_schema)
 
 ### POOL&#95;JOINING&#95;HOST&#95;MUST&#95;HAVE&#95;SAME&#95;PRODUCT&#95;VERSION
 
-The host joining the pool must have the same product version as the pool master.
+The server joining the pool must have the same product version as the pool master.
 
 No parameters.
 
@@ -2830,7 +2820,7 @@ No parameters.
 
 ### RESTORE&#95;SCRIPT&#95;FAILED
 
-The restore could not be performed because the restore script failed.  Is the file corrupt?
+The restore could not be performed because the restore script failed. Is the file corrupt?
 
 _Signature:_
 
@@ -2840,7 +2830,7 @@ RESTORE_SCRIPT_FAILED(log)
 
 ### RESTORE&#95;TARGET&#95;MGMT&#95;IF&#95;NOT&#95;IN&#95;BACKUP
 
-The restore could not be performed because the host's current management interface is not in the backup. The interfaces mentioned in the backup are:
+The restore could not be performed because the server's current management interface is not in the backup. The interfaces mentioned in the backup are:
 
 No parameters.
 
@@ -2874,7 +2864,7 @@ No parameters.
 
 ### SESSION&#95;INVALID
 
-You gave an invalid session reference.  It may have been invalidated by a server restart, or timed out.  You should get a new session handle, using one of the session.login&#95; calls.  This error does not invalidate the current connection.  The handle parameter echoes the bad value given.
+You gave an invalid session reference. It may have been invalidated by a server restart, or timed out. You should get a new session handle, using one of the session.login&#95; calls. This error does not invalidate the current connection. The handle parameter echoes the bad value given.
 
 _Signature:_
 
@@ -2884,7 +2874,7 @@ SESSION_INVALID(handle)
 
 ### SESSION&#95;NOT&#95;REGISTERED
 
-This session is not registered to receive events.  You must call event.register before event.next.  The session handle you are using is echoed.
+This session is not registered to receive events. You must call event.register before event.next. The session handle you are using is echoed.
 
 _Signature:_
 
@@ -2900,7 +2890,7 @@ No parameters.
 
 ### SM&#95;PLUGIN&#95;COMMUNICATION&#95;FAILURE
 
-The SM plugin did not respond to a query.
+The SM plug&#45;in did not respond to a query.
 
 _Signature:_
 
@@ -2930,13 +2920,13 @@ SR_BACKEND_FAILURE(status, stdout, stderr)
 
 ### SR&#95;DEVICE&#95;IN&#95;USE
 
-The SR operation cannot be performed because a device underlying the SR is in use by the host.
+The SR operation cannot be performed because a device underlying the SR is in use by the server.
 
 No parameters.
 
 ### SR&#95;DOES&#95;NOT&#95;SUPPORT&#95;MIGRATION
 
-You attempted to migrate a VDI to or from an SR which doesn't support migration
+Cannot migrate a VDI to or from an SR that doesn't support migration.
 
 _Signature:_
 
@@ -2956,7 +2946,7 @@ SR_FULL(requested, maximum)
 
 ### SR&#95;HAS&#95;MULTIPLE&#95;PBDS
 
-The SR.shared flag cannot be set to false while the SR remains connected to multiple hosts
+The SR.shared flag cannot be set to false while the SR remains connected to multiple servers.
 
 _Signature:_
 
@@ -2986,7 +2976,7 @@ SR_HAS_PBD(sr)
 
 ### SR&#95;INDESTRUCTIBLE
 
-The SR could not be destroyed, as the 'indestructible' flag was set on it.
+The SR could not be destroyed because the 'indestructible' flag was set on it.
 
 _Signature:_
 
@@ -3120,13 +3110,13 @@ SUSPEND_IMAGE_NOT_ACCESSIBLE(vdi)
 
 ### SYSTEM&#95;STATUS&#95;MUST&#95;USE&#95;TAR&#95;ON&#95;OEM
 
-You must use tar output to retrieve system status from an OEM host.
+You must use tar output to retrieve system status from an OEM server.
 
 No parameters.
 
 ### SYSTEM&#95;STATUS&#95;RETRIEVAL&#95;FAILED
 
-Retrieving system status from the host failed.  A diagnostic reason suitable for support organisations is also returned.
+Retrieving system status from the host failed. A diagnostic reason suitable for support organisations is also returned.
 
 _Signature:_
 
@@ -3136,7 +3126,7 @@ SYSTEM_STATUS_RETRIEVAL_FAILED(reason)
 
 ### TASK&#95;CANCELLED
 
-The request was asynchronously cancelled.
+The request was asynchronously canceled.
 
 _Signature:_
 
@@ -3274,7 +3264,7 @@ UPDATE_POOL_APPLY_FAILED(hosts)
 
 ### UPDATE&#95;PRECHECK&#95;FAILED&#95;CONFLICT&#95;PRESENT
 
-The update precheck stage failed: conflicting update&#40;s&#41; are present.
+The update pre&#45;check stage failed: conflicting update&#40;s&#41; are present.
 
 _Signature:_
 
@@ -3284,7 +3274,7 @@ UPDATE_PRECHECK_FAILED_CONFLICT_PRESENT(update, conflict_update)
 
 ### UPDATE&#95;PRECHECK&#95;FAILED&#95;GPGKEY&#95;NOT&#95;IMPORTED
 
-The update precheck stage failed: RPM package validation requires a GPG key that is not present on the host.
+The update pre&#45;check stage failed: RPM package validation requires a GPG key that is not present on the host.
 
 _Signature:_
 
@@ -3294,7 +3284,7 @@ UPDATE_PRECHECK_FAILED_GPGKEY_NOT_IMPORTED(update)
 
 ### UPDATE&#95;PRECHECK&#95;FAILED&#95;OUT&#95;OF&#95;SPACE
 
-The update precheck stage failed: the server does not have enough space.
+The update pre&#45;check stage failed: the server does not have enough space.
 
 _Signature:_
 
@@ -3304,7 +3294,7 @@ UPDATE_PRECHECK_FAILED_OUT_OF_SPACE(update, available_space, required_space )
 
 ### UPDATE&#95;PRECHECK&#95;FAILED&#95;PREREQUISITE&#95;MISSING
 
-The update precheck stage failed: prerequisite update&#40;s&#41; are missing.
+The update pre&#45;check stage failed: prerequisite update&#40;s&#41; are missing.
 
 _Signature:_
 
@@ -3314,7 +3304,7 @@ UPDATE_PRECHECK_FAILED_PREREQUISITE_MISSING(update, prerequisite_update)
 
 ### UPDATE&#95;PRECHECK&#95;FAILED&#95;UNKNOWN&#95;ERROR
 
-The update precheck stage failed with an unknown error.
+The update pre&#45;check stage failed with an unknown error.
 
 _Signature:_
 
@@ -3324,7 +3314,7 @@ UPDATE_PRECHECK_FAILED_UNKNOWN_ERROR(update, info)
 
 ### UPDATE&#95;PRECHECK&#95;FAILED&#95;WRONG&#95;SERVER&#95;VERSION
 
-The update precheck stage failed: the server is of an incorrect version.
+The update pre&#45;check stage failed: the server is of an incorrect version.
 
 _Signature:_
 
@@ -3384,7 +3374,7 @@ USB_GROUP_CONTAINS_VUSB(vusbs)
 
 ### USER&#95;IS&#95;NOT&#95;LOCAL&#95;SUPERUSER
 
-Only the local superuser can execute this operation
+Only the local superuser can perform this operation.
 
 _Signature:_
 
@@ -3410,7 +3400,7 @@ No parameters.
 
 ### VALUE&#95;NOT&#95;SUPPORTED
 
-You attempted to set a value that is not supported by this implementation.  The fully&#45;qualified field name and the value that you tried to set are returned.  Also returned is a developer&#45;only diagnostic reason.
+You attempted to set a value that is not supported by this implementation. The fully&#45;qualified field name and the value that you tried to set are returned. Also returned is a developer&#45;only diagnostic reason.
 
 _Signature:_
 
@@ -3582,7 +3572,7 @@ VDI_MISSING(sr, vdi)
 
 ### VDI&#95;NEEDS&#95;VM&#95;FOR&#95;MIGRATE
 
-You attempted to migrate a VDI which is not attached to a running VM.
+Cannot migrate a VDI which is not attached to a running VM.
 
 _Signature:_
 
@@ -3686,9 +3676,29 @@ _Signature:_
 VGPU_DESTINATION_INCOMPATIBLE(reason, vgpu, host)
 ```
 
+### VGPU&#95;GUEST&#95;DRIVER&#95;LIMIT
+
+The guest driver does not support VGPU migration.
+
+_Signature:_
+
+```
+VGPU_GUEST_DRIVER_LIMIT(reason, vm, host)
+```
+
+### VGPU&#95;TYPE&#95;NOT&#95;COMPATIBLE
+
+Cannot create a virtual GPU that is incompatible with the existing types on the VM.
+
+_Signature:_
+
+```
+VGPU_TYPE_NOT_COMPATIBLE(type)
+```
+
 ### VGPU&#95;TYPE&#95;NOT&#95;COMPATIBLE&#95;WITH&#95;RUNNING&#95;TYPE
 
-VGPU type is not compatible with one or more of the VGPU types currently running on this PGPU
+The VGPU type is incompatible with one or more of the VGPU types currently running on this PGPU
 
 _Signature:_
 
@@ -3748,7 +3758,7 @@ VLAN_IN_USE(device, vlan)
 
 ### VLAN&#95;TAG&#95;INVALID
 
-You tried to create a VLAN, but the tag you gave was invalid &#45;&#45; it must be between 0 and 4094.  The parameter echoes the VLAN tag you gave.
+You tried to create a VLAN, but the tag you gave was invalid &#45;&#45; it must be between 0 and 4094. The parameter echoes the VLAN tag you gave.
 
 _Signature:_
 
@@ -3812,7 +3822,7 @@ VM_ATTACHED_TO_MORE_THAN_ONE_VDI_WITH_TIMEOFFSET_MARKED_AS_RESET_ON_BOOT(vm)
 
 ### VM&#95;BAD&#95;POWER&#95;STATE
 
-You attempted an operation on a VM that was not in an appropriate power state at the time; for example, you attempted to start a VM that was already running.  The parameters returned are the VM's handle, and the expected and actual VM state at the time of the call.
+You attempted an operation on a VM that was not in an appropriate power state at the time; for example, you attempted to start a VM that was already running. The parameters returned are the VM's handle, and the expected and actual VM state at the time of the call.
 
 _Signature:_
 
@@ -3828,7 +3838,7 @@ No parameters.
 
 ### VM&#95;CALL&#95;PLUGIN&#95;RATE&#95;LIMIT
 
-There is a minimal interval required between consecutive plugin calls made on the same VM, please wait before retry.
+There is a minimal interval required between consecutive plug&#45;in calls made on the same VM, please wait before retry.
 
 _Signature:_
 
@@ -3918,7 +3928,7 @@ VM_HALTED(vm)
 
 ### VM&#95;HAS&#95;CHECKPOINT
 
-You attempted to migrate a VM which has a checkpoint.
+Cannot migrate a VM which has a checkpoint.
 
 _Signature:_
 
@@ -3958,7 +3968,7 @@ VM_HAS_SRIOV_VIF(vm)
 
 ### VM&#95;HAS&#95;TOO&#95;MANY&#95;SNAPSHOTS
 
-You attempted to migrate a VM with more than one snapshot.
+Cannot migrate a VM with more than one snapshot.
 
 _Signature:_
 
@@ -3998,7 +4008,7 @@ VM_HOST_INCOMPATIBLE_VERSION(host, vm)
 
 ### VM&#95;HOST&#95;INCOMPATIBLE&#95;VERSION&#95;MIGRATE
 
-You attempted to migrate a VM to a destination host which is older than the source host.
+Cannot migrate a VM to a destination host which is older than the source host.
 
 _Signature:_
 
@@ -4058,7 +4068,7 @@ VM_IS_PART_OF_AN_APPLIANCE(vm, appliance)
 
 ### VM&#95;IS&#95;PROTECTED
 
-This operation cannot be performed because the specified VM is protected by xHA
+This operation cannot be performed because the specified VM is protected by HA
 
 _Signature:_
 
@@ -4078,7 +4088,7 @@ VM_IS_TEMPLATE(vm)
 
 ### VM&#95;IS&#95;USING&#95;NESTED&#95;VIRT
 
-This operation is illegal because the VM is using nested virtualisation.
+This operation is illegal because the VM is using nested virtualization.
 
 _Signature:_
 
@@ -4174,7 +4184,7 @@ VM_MISSING_PV_DRIVERS(vm)
 
 ### VM&#95;NOT&#95;RESIDENT&#95;HERE
 
-The specified VM is not currently resident on the specified host.
+The specified VM is not currently resident on the specified server.
 
 _Signature:_
 
@@ -4184,7 +4194,7 @@ VM_NOT_RESIDENT_HERE(vm, host)
 
 ### VM&#95;NO&#95;CRASHDUMP&#95;SR
 
-This VM does not have a crashdump SR specified.
+This VM does not have a crash dump SR specified.
 
 _Signature:_
 
@@ -4230,6 +4240,16 @@ _Signature:_
 
 ```
 VM_OLD_PV_DRIVERS(vm, major, minor)
+```
+
+### VM&#95;PCI&#95;BUS&#95;FULL
+
+The VM does not have any free PCI slots
+
+_Signature:_
+
+```
+VM_PCI_BUS_FULL(VM)
 ```
 
 ### VM&#95;PV&#95;DRIVERS&#95;IN&#95;USE
@@ -4460,7 +4480,7 @@ No parameters.
 
 ### WLB&#95;MALFORMED&#95;RESPONSE
 
-WLB said something that the server wasn't expecting or didn't understand.  The method called on WLB, a diagnostic reason, and the response from WLB are returned.
+WLB said something that the server wasn't expecting or didn't understand. The method called on WLB, a diagnostic reason, and the response from WLB are returned.
 
 _Signature:_
 
@@ -4492,7 +4512,7 @@ No parameters.
 
 ### WLB&#95;URL&#95;INVALID
 
-The WLB URL is invalid. Ensure it is in format: &lt;ipaddress&gt;:&lt;port&gt;.  The configured/given URL is returned.
+The WLB URL is invalid. Ensure it is in the format: &lt;ipaddress&gt;:&lt;port&gt;. The configured/given URL is returned.
 
 _Signature:_
 
@@ -4508,7 +4528,7 @@ No parameters.
 
 ### WLB&#95;XENSERVER&#95;CONNECTION&#95;REFUSED
 
-WLB reported that the server refused it a connection &#40;even though we're connecting perfectly fine in the other direction&#41;.
+WLB reported that the server refused to let it connect &#40;even though we're connecting perfectly fine in the other direction&#41;.
 
 No parameters.
 
@@ -4542,7 +4562,7 @@ XAPI_HOOK_FAILED(hook_name, reason, stdout, exit_code)
 
 ### XENAPI&#95;MISSING&#95;PLUGIN
 
-The requested plugin could not be found.
+The requested plug&#45;in could not be found.
 
 _Signature:_
 
@@ -4552,13 +4572,19 @@ XENAPI_MISSING_PLUGIN(name)
 
 ### XENAPI&#95;PLUGIN&#95;FAILURE
 
-There was a failure communicating with the plugin.
+There was a failure communicating with the plug&#45;in.
 
 _Signature:_
 
 ```
 XENAPI_PLUGIN_FAILURE(status, stdout, stderr)
 ```
+
+### XEN&#95;INCOMPATIBLE
+
+The current version of Xen or its control libraries is incompatible with the Toolstack.
+
+No parameters.
 
 ### XEN&#95;VSS&#95;REQ&#95;ERROR&#95;ADDING&#95;VOLUME&#95;TO&#95;SNAPSET&#95;FAILED
 
@@ -4602,7 +4628,7 @@ XEN_VSS_REQ_ERROR_INIT_FAILED(vm, error_code)
 
 ### XEN&#95;VSS&#95;REQ&#95;ERROR&#95;NO&#95;VOLUMES&#95;SUPPORTED
 
-Could not find any volumes supported by the Vss Provider
+Could not find any volumes supported by the VSS Provider
 
 _Signature:_
 
@@ -4622,7 +4648,7 @@ XEN_VSS_REQ_ERROR_PREPARING_WRITERS(vm, error_code)
 
 ### XEN&#95;VSS&#95;REQ&#95;ERROR&#95;PROV&#95;NOT&#95;LOADED
 
-The Vss Provider is not loaded
+The VSS Provider is not loaded
 
 _Signature:_
 
