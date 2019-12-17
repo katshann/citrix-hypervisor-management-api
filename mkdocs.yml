@@ -54,6 +54,7 @@ markdown_extensions:
   - extra
 
 # Page tree
+nav:
 - Citrix Hypervisor 8.0 CR Management API Reference: index.md
 - Wire Protocol for Remote API Calls: wire-protocol.md
 - VM Lifecycle: vm-lifecycle.md
