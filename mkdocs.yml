@@ -2,16 +2,26 @@ site_name: Citrix Hypervisor Management API Reference
 site_description: Citrix Hypervisor Management API Reference
 site_title: Developer Documentation
 
+# Copyright
 copyright: 'Copyright &copy; 1999-2019 Citrix Systems, Inc. All rights reserved. '
 
 extra_css:
   - 'assets/stylesheets/extra.css'
 
+# Configuration
 theme:
   name: null
-  custom_dir: material
+  custom_dir: devdocs-theme
+
+  # 404 page
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
   include_search_page: false
   search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
   language: en
   feature:
     tabs: false
@@ -22,6 +32,7 @@ theme:
   favicon: /media/favicon.ico
   logo: https://developer-docs.citrix.com/_static/Citrix_Logo_Black.png
 
+# Customization
 extra:
   social:
     - type: youtube
@@ -40,8 +51,9 @@ markdown_extensions:
       permalink: true
   - footnotes
   - meta
+  - extra
 
-nav:
+# Page tree
 - Citrix Hypervisor 8.0 CR Management API Reference: index.md
 - Wire Protocol for Remote API Calls: wire-protocol.md
 - VM Lifecycle: vm-lifecycle.md
