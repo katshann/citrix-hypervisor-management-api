@@ -9,6 +9,7 @@ The following classes are defined:
 |`auth              `|Management of remote authentication services                          |
 |`blob              `|A placeholder for a binary blob                                       |
 |`Bond              `|                                                                      |
+|`Certificate       `|Description                                                           |
 |`Cluster           `|Cluster&#45;wide Cluster metadata                                     |
 |`Cluster_host      `|Cluster member metadata                                               |
 |`console           `|A console                                                             |
@@ -134,6 +135,7 @@ Fields that are bound together are shown in the following table:
 |`Feature.host                          `|`host.features                         `|one-to-many    |
 |`network_sriov.physical_PIF            `|`PIF.sriov_physical_PIF_of             `|one-to-many    |
 |`network_sriov.logical_PIF             `|`PIF.sriov_logical_PIF_of              `|one-to-many    |
+|`Certificate.host                      `|`host.certificates                     `|one-to-many    |
 
 The following figure represents bound fields (as specified above) diagramatically, using crow's foot notation to specify one-to-one, one-to-many or many-to-many relationships:
 
@@ -457,6 +459,7 @@ The following enumeration types are used:
 |`gvt_g                                 `|vGPU using Intel GVT&#45;g              |
 |`mxgpu                                 `|vGPU using AMD MxGPU                    |
 |`nvidia                                `|vGPU using NVIDIA hardware              |
+|`nvidia_sriov                          `|vGPU using NVIDIA hardware with SR&#45;IOV|
 |`passthrough                           `|Pass through an entire physical GPU to a guest|
 
 |`enum vif_ipv4_configuration_mode      `|                                        |
@@ -581,7 +584,7 @@ The following enumeration types are used:
 |:---------------------------------------|:---------------------------------------|
 |`checkpoint                            `|The snapshot is a checkpoint            |
 |`snapshot                              `|The snapshot is a disk snapshot         |
-|`snapshot_with_quiesce                 `|The snapshot is a VSS                   |
+|`snapshot_with_quiesce                 `|Support for VSS has been removed.       |
 
 |`enum vusb_operations                  `|                                        |
 |:---------------------------------------|:---------------------------------------|
@@ -1107,6 +1110,7 @@ _Return Type:_ `void`
 
 |Field               |Type                |Qualifier      |Description                             |
 |:-------------------|:-------------------|:--------------|:---------------------------------------|
+|auto&#95;update&#95;mac|`bool              `|_RO/runtime_   |true if the MAC was taken from the primary slave when the bond was created, and false if the client specified the MAC|
 |links&#95;up        |`int               `|_RO/runtime_   |Number of links up in this bond         |
 |master              |`PIF ref           `|_RO/constructor_|The bonded interface                    |
 |mode                |`bond_mode         `|_RO/runtime_   |The algorithm used to distribute traffic among the bonded NICs|
@@ -1230,6 +1234,31 @@ _Minimum Role:_ read-only
 _Return Type:_ `(Bond ref -> Bond record) map`
 
 records of all objects
+
+#### RPC name: get&#95;auto&#95;update&#95;mac
+
+_Overview:_
+
+Get the auto&#95;update&#95;mac field of the given Bond.
+
+_Signature:_
+
+```
+bool get_auto_update_mac (session ref session_id, Bond ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Bond ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `bool`
+
+value of the field
 
 #### RPC name: get&#95;by&#95;uuid
 
@@ -1577,6 +1606,233 @@ _Arguments:_
 _Minimum Role:_ pool-operator
 
 _Return Type:_ `void`
+
+## Class: Certificate
+
+Description
+
+### Fields for class: Certificate
+
+|Field               |Type                |Qualifier      |Description                             |
+|:-------------------|:-------------------|:--------------|:---------------------------------------|
+|fingerprint         |`string            `|_RO/constructor_|The certificate's fingerprint / hash    |
+|host                |`host ref          `|_RO/constructor_|The host where the certificate is installed|
+|not&#95;after       |`datetime          `|_RO/constructor_|Date before which the certificate is valid|
+|not&#95;before      |`datetime          `|_RO/constructor_|Date after which the certificate is valid|
+|uuid                |`string            `|_RO/runtime_   |Unique identifier/object reference      |
+
+### RPCs associated with class: Certificate
+
+#### RPC name: get&#95;all
+
+_Overview:_
+
+Return a list of all the Certificates known to the system.
+
+_Signature:_
+
+```
+Certificate ref set get_all (session ref session_id)
+```
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `Certificate ref set`
+
+references to all objects
+
+#### RPC name: get&#95;all&#95;records
+
+_Overview:_
+
+Return a map of Certificate references to Certificate records for all Certificates known to the system.
+
+_Signature:_
+
+```
+(Certificate ref -> Certificate record) map get_all_records (session ref session_id)
+```
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `(Certificate ref -> Certificate record) map`
+
+records of all objects
+
+#### RPC name: get&#95;by&#95;uuid
+
+_Overview:_
+
+Get a reference to the Certificate instance with the specified UUID.
+
+_Signature:_
+
+```
+Certificate ref get_by_uuid (session ref session_id, string uuid)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`string                      `|uuid                          |UUID of object to return                |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `Certificate ref`
+
+reference to the object
+
+#### RPC name: get&#95;fingerprint
+
+_Overview:_
+
+Get the fingerprint field of the given Certificate.
+
+_Signature:_
+
+```
+string get_fingerprint (session ref session_id, Certificate ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Certificate ref             `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `string`
+
+value of the field
+
+#### RPC name: get&#95;host
+
+_Overview:_
+
+Get the host field of the given Certificate.
+
+_Signature:_
+
+```
+host ref get_host (session ref session_id, Certificate ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Certificate ref             `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `host ref`
+
+value of the field
+
+#### RPC name: get&#95;not&#95;after
+
+_Overview:_
+
+Get the not&#95;after field of the given Certificate.
+
+_Signature:_
+
+```
+datetime get_not_after (session ref session_id, Certificate ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Certificate ref             `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `datetime`
+
+value of the field
+
+#### RPC name: get&#95;not&#95;before
+
+_Overview:_
+
+Get the not&#95;before field of the given Certificate.
+
+_Signature:_
+
+```
+datetime get_not_before (session ref session_id, Certificate ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Certificate ref             `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `datetime`
+
+value of the field
+
+#### RPC name: get&#95;record
+
+_Overview:_
+
+Get a record containing the current state of the given Certificate.
+
+_Signature:_
+
+```
+Certificate record get_record (session ref session_id, Certificate ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Certificate ref             `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `Certificate record`
+
+all fields from the object
+
+#### RPC name: get&#95;uuid
+
+_Overview:_
+
+Get the uuid field of the given Certificate.
+
+_Signature:_
+
+```
+string get_uuid (session ref session_id, Certificate ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`Certificate ref             `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `string`
+
+value of the field
 
 ## Class: Cluster
 
@@ -4678,6 +4934,7 @@ A physical host
 |bios&#95;strings    |`(string -> string) map`|_RO/runtime_   |BIOS strings                            |
 |blobs               |`(string -> blob ref) map`|_RO/runtime_   |Binary blobs associated with this host  |
 |capabilities        |`string set        `|_RO/constructor_|Xen capabilities                        |
+|certificates        |`Certificate ref set`|_RO/runtime_   |List of certificates installed in the host|
 |chipset&#95;info    |`(string -> string) map`|_RO/runtime_   |Information about chipset features      |
 |control&#95;domain  |`VM ref            `|_RO/runtime_   |The control domain &#40;domain 0&#41;   |
 |cpu&#95;configuration|`(string -> string) map`|_RO/runtime_   |The CPU configuration on this host.  May contain keys such as "nr&#95;nodes", "sockets&#95;per&#95;node", "cores&#95;per&#95;socket", or "threads&#95;per&#95;core"|
@@ -4687,6 +4944,7 @@ A physical host
 |current&#95;operations|`(string -> host_allowed_operations) map`|_RO/runtime_   |links each of the running tasks using this object &#40;by reference&#41; to a current&#95;operation enum which describes the nature of the task.|
 |display             |`host_display      `|_RW_           |indicates whether the host is configured to output its console to a physical display device|
 |edition             |`string            `|_RO/runtime_   |Product edition                         |
+|editions            |`string set        `|_RO/runtime_   |List of all available product editions  |
 |enabled             |`bool              `|_RO/runtime_   |True if the host is currently enabled   |
 |external&#95;auth&#95;configuration|`(string -> string) map`|_RO/runtime_   |configuration specific to external authentication service|
 |external&#95;auth&#95;service&#95;name|`string            `|_RO/runtime_   |name of external authentication service configured; empty if none configured.|
@@ -4719,10 +4977,11 @@ A physical host
 |resident&#95;VMs    |`VM ref set        `|_RO/runtime_   |list of VMs currently resident on host  |
 |sched&#95;policy    |`string            `|_RO/runtime_   |Scheduler policy currently in force on this host|
 |software&#95;version|`(string -> string) map`|_RO/constructor_|version strings                         |
-|ssl&#95;legacy      |`bool              `|_RO/constructor_|Allow SSLv3 protocol and ciphersuites as used by older server versions. This controls both incoming and outgoing connections. When this is set to a different value, the host immediately restarts its SSL/TLS listening service; typically this takes less than a second but existing connections to it will be broken. API login sessions will remain valid.|
+|ssl&#95;legacy      |`bool              `|_RO/constructor_|**Deprecated**. Allow SSLv3 protocol and ciphersuites as used by older server versions. This controls both incoming and outgoing connections. When this is set to a different value, the host immediately restarts its SSL/TLS listening service; typically this takes less than a second but existing connections to it will be broken. API login sessions will remain valid.|
 |supported&#95;bootloaders|`string set        `|_RO/runtime_   |a list of the bootloaders installed on the machine|
 |suspend&#95;image&#95;sr|`SR ref            `|_RW_           |The SR in which VDIs for suspend images are created|
 |tags                |`string set        `|_RW_           |user&#45;specified tags for categorization purposes|
+|uefi&#95;certificates|`string            `|_RO/constructor_|The UEFI certificates allowing Secure Boot|
 |updates             |`pool_update ref set`|_RO/runtime_   |Set of updates                          |
 |updates&#95;requiring&#95;reboot|`pool_update ref set`|_RO/runtime_   |List of updates which require reboot    |
 |uuid                |`string            `|_RO/runtime_   |Unique identifier/object reference      |
@@ -5297,6 +5556,20 @@ _Minimum Role:_ pool-operator
 
 _Return Type:_ `void`
 
+#### RPC name: emergency&#95;reset&#95;server&#95;certificate
+
+_Overview:_
+
+Delete the current TLS server certificate and replace by a new, self&#45;signed one. This should only be used with extreme care.
+
+_Signature:_
+
+```
+void emergency_reset_server_certificate (session ref session_id)
+```
+
+_Return Type:_ `void`
+
 #### RPC name: enable
 
 _Overview:_
@@ -5753,6 +6026,31 @@ _Return Type:_ `string set`
 
 value of the field
 
+#### RPC name: get&#95;certificates
+
+_Overview:_
+
+Get the certificates field of the given host.
+
+_Signature:_
+
+```
+Certificate ref set get_certificates (session ref session_id, host ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`host ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `Certificate ref set`
+
+value of the field
+
 #### RPC name: get&#95;chipset&#95;info
 
 _Overview:_
@@ -6000,6 +6298,31 @@ _Arguments:_
 _Minimum Role:_ read-only
 
 _Return Type:_ `string`
+
+value of the field
+
+#### RPC name: get&#95;editions
+
+_Overview:_
+
+Get the editions field of the given host.
+
+_Signature:_
+
+```
+string set get_editions (session ref session_id, host ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`host ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `string set`
 
 value of the field
 
@@ -6957,6 +7280,8 @@ value of the field
 
 #### RPC name: get&#95;ssl&#95;legacy
 
+**This message is deprecated.**
+
 _Overview:_
 
 Get the ssl&#95;legacy field of the given host.
@@ -7077,6 +7402,31 @@ _Arguments:_
 _Minimum Role:_ read-only
 
 _Return Type:_ `string set`
+
+value of the field
+
+#### RPC name: get&#95;uefi&#95;certificates
+
+_Overview:_
+
+Get the uefi&#95;certificates field of the given host.
+
+_Signature:_
+
+```
+string get_uefi_certificates (session ref session_id, host ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`host ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `string`
 
 value of the field
 
@@ -7257,6 +7607,32 @@ _Minimum Role:_ pool-admin
 _Return Type:_ `bool`
 
 True if the extension exists, false otherwise
+
+#### RPC name: install&#95;server&#95;certificate
+
+_Overview:_
+
+Install the TLS server certificate.
+
+_Signature:_
+
+```
+void install_server_certificate (session ref session_id, host ref host, string certificate, string private_key, string certificate_chain)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`host ref                    `|host                          |The host                                |
+|`string                      `|certificate                   |The server certificate, in PEM form     |
+|`string                      `|private&#95;key               |The unencrypted private key used to sign the certificate, in PKCS&#35;8 form|
+|`string                      `|certificate&#95;chain         |The certificate chain, in PEM form      |
+
+_Minimum Role:_ pool-admin
+
+_Return Type:_ `void`
 
 #### RPC name: license&#95;add
 
@@ -8138,7 +8514,7 @@ _Arguments:_
 |:-----------------------------|:-----------------------------|:---------------------------------------|
 |session ref                   |session_id                    |Reference to a valid session            |
 |`host ref                    `|self                          |The host                                |
-|`string                      `|power&#95;on&#95;mode         |power&#45;on&#45;mode can be empty,iLO,wake&#45;on&#45;lan, DRAC or other|
+|`string                      `|power&#95;on&#95;mode         |power&#45;on&#45;mode can be empty, wake&#45;on&#45;lan, DRAC or other|
 |`(string -> string) map      `|power&#95;on&#95;config       |Power on config                         |
 
 _Minimum Role:_ pool-operator
@@ -8214,6 +8590,28 @@ _Arguments:_
 |`string set                  `|value                         |New value to set                        |
 
 _Minimum Role:_ vm-operator
+
+_Return Type:_ `void`
+
+#### RPC name: set&#95;uefi&#95;certificates
+
+_Overview:_
+
+Sets the UEFI certificates on a host
+
+_Signature:_
+
+```
+void set_uefi_certificates (session ref session_id, host ref host, string value)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`host ref                    `|host                          |The host                                |
+|`string                      `|value                         |The certificates to apply to a host     |
 
 _Return Type:_ `void`
 
@@ -15202,12 +15600,13 @@ Pool&#45;wide information
 |restrictions        |`(string -> string) map`|_RO/runtime_   |Pool&#45;wide restrictions currently in effect|
 |suspend&#95;image&#95;SR|`SR ref            `|_RW_           |The SR in which VDIs for suspend images are created|
 |tags                |`string set        `|_RW_           |user&#45;specified tags for categorization purposes|
+|uefi&#95;certificates|`string            `|_RW_           |The UEFI certificates allowing Secure Boot|
 |uuid                |`string            `|_RO/runtime_   |Unique identifier/object reference      |
 |vswitch&#95;controller|`string            `|_RO/runtime_   |**Deprecated**. address of the vswitch controller|
 |wlb&#95;enabled     |`bool              `|_RW_           |true if workload balancing is enabled on the pool, false otherwise|
 |wlb&#95;url         |`string            `|_RO/runtime_   |Url for the configured workload balancing host|
 |wlb&#95;username    |`string            `|_RO/runtime_   |Username for accessing the workload balancing host|
-|wlb&#95;verify&#95;cert|`bool              `|_RW_           |true if communication with the WLB server should enforce SSL certificate verification.|
+|wlb&#95;verify&#95;cert|`bool              `|_RW_           |true if communication with the WLB server should enforce TLS certificate verification.|
 
 ### RPCs associated with class: pool
 
@@ -15363,7 +15762,7 @@ _Return Type:_ `void`
 
 _Overview:_
 
-Install an SSL certificate pool&#45;wide.
+Install a TLS CA certificate, pool&#45;wide.
 
 _Signature:_
 
@@ -15387,7 +15786,7 @@ _Return Type:_ `void`
 
 _Overview:_
 
-List all installed SSL certificates.
+List the names of all installed TLS CA certificates.
 
 _Signature:_
 
@@ -15405,7 +15804,7 @@ All installed certificates
 
 _Overview:_
 
-Sync SSL certificates from master to slaves.
+Copy the TLS CA certificates and CRLs of the master to all slaves.
 
 _Signature:_
 
@@ -15421,7 +15820,7 @@ _Return Type:_ `void`
 
 _Overview:_
 
-Remove an SSL certificate.
+Remove a pool&#45;wide TLS CA certificate.
 
 _Signature:_
 
@@ -15530,7 +15929,7 @@ _Possible Error Codes:_ `VLAN_TAG_INVALID`
 
 _Overview:_
 
-Install an SSL certificate revocation list, pool&#45;wide.
+Install a TLS Certificate Revocation List, pool&#45;wide.
 
 _Signature:_
 
@@ -15554,7 +15953,7 @@ _Return Type:_ `void`
 
 _Overview:_
 
-List all installed SSL certificate revocation lists.
+List the names of all installed TLS Certificate Revocation Lists.
 
 _Signature:_
 
@@ -15566,13 +15965,13 @@ _Minimum Role:_ pool-operator
 
 _Return Type:_ `string set`
 
-All installed CRLs
+The names of all installed CRLs
 
 #### RPC name: crl&#95;uninstall
 
 _Overview:_
 
-Remove an SSL certificate revocation list.
+Remove a pool&#45;wide TLS Certificate Revocation List.
 
 _Signature:_
 
@@ -15734,9 +16133,11 @@ _Return Type:_ `void`
 
 #### RPC name: disable&#95;ssl&#95;legacy
 
+**This message is deprecated.**
+
 _Overview:_
 
-Sets ssl&#95;legacy true on each host, pool&#45;master last. See Host.ssl&#95;legacy and Host.set&#95;ssl&#95;legacy.
+Sets ssl&#95;legacy false on each host, pool&#45;master last. See Host.ssl&#95;legacy and Host.set&#95;ssl&#95;legacy.
 
 _Signature:_
 
@@ -15914,6 +16315,8 @@ _Minimum Role:_ pool-operator
 _Return Type:_ `void`
 
 #### RPC name: enable&#95;ssl&#95;legacy
+
+**This message is removed.**
 
 _Overview:_
 
@@ -16794,6 +17197,31 @@ _Arguments:_
 _Minimum Role:_ read-only
 
 _Return Type:_ `string set`
+
+value of the field
+
+#### RPC name: get&#95;uefi&#95;certificates
+
+_Overview:_
+
+Get the uefi&#95;certificates field of the given pool.
+
+_Signature:_
+
+```
+string get_uefi_certificates (session ref session_id, pool ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`pool ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `string`
 
 value of the field
 
@@ -17753,6 +18181,30 @@ _Arguments:_
 |`string set                  `|value                         |New value to set                        |
 
 _Minimum Role:_ vm-operator
+
+_Return Type:_ `void`
+
+#### RPC name: set&#95;uefi&#95;certificates
+
+_Overview:_
+
+Set the uefi&#95;certificates field of the given pool.
+
+_Signature:_
+
+```
+void set_uefi_certificates (session ref session_id, pool ref self, string value)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`pool ref                    `|self                          |reference to the object                 |
+|`string                      `|value                         |New value to set                        |
+
+_Minimum Role:_ pool-operator
 
 _Return Type:_ `void`
 
@@ -19204,6 +19656,7 @@ A physical USB device
 |product&#95;desc    |`string            `|_RO/constructor_|product description of the USB device   |
 |product&#95;id      |`string            `|_RO/constructor_|product id of the USB device            |
 |serial              |`string            `|_RO/constructor_|serial of the USB device                |
+|speed               |`float             `|_RO/constructor_|USB device speed                        |
 |USB&#95;group       |`USB_group ref     `|_RO/constructor_|USB group the PUSB is contained in      |
 |uuid                |`string            `|_RO/runtime_   |Unique identifier/object reference      |
 |vendor&#95;desc     |`string            `|_RO/constructor_|vendor description of the USB device    |
@@ -19520,6 +19973,31 @@ _Arguments:_
 _Minimum Role:_ read-only
 
 _Return Type:_ `string`
+
+value of the field
+
+#### RPC name: get&#95;speed
+
+_Overview:_
+
+Get the speed field of the given PUSB.
+
+_Signature:_
+
+```
+float get_speed (session ref session_id, PUSB ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`PUSB ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `float`
 
 value of the field
 
@@ -25704,6 +26182,30 @@ _Minimum Role:_ pool-operator
 
 _Return Type:_ `void`
 
+#### RPC name: set&#95;progress
+
+_Overview:_
+
+Set the task progress
+
+_Signature:_
+
+```
+void set_progress (session ref session_id, task ref self, float value)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`task ref                    `|self                          |Reference to the task object            |
+|`float                       `|value                         |Task progress value to be set           |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `void`
+
 #### RPC name: set&#95;status
 
 _Overview:_
@@ -30314,8 +30816,10 @@ A virtual GPU &#40;vGPU&#41;
 |compatibility&#95;metadata|`(string -> string) map`|_RO/runtime_   |VGPU metadata to determine whether a VGPU can migrate between two PGPUs|
 |currently&#95;attached|`bool              `|_RO/runtime_   |Reflects whether the virtual device is currently connected to a physical device|
 |device              |`string            `|_RO/runtime_   |Order in which the devices are plugged into the VM|
+|extra&#95;args      |`string            `|_RW_           |Extra arguments for vGPU and passed to demu|
 |GPU&#95;group       |`GPU_group ref     `|_RO/runtime_   |GPU group used by the vGPU              |
 |other&#95;config    |`(string -> string) map`|_RW_           |Additional configuration                |
+|PCI                 |`PCI ref           `|_RO/runtime_   |Device passed trough to VM, either as full device or SR&#45;IOV virtual function|
 |resident&#95;on     |`PGPU ref          `|_RO/runtime_   |The PGPU on which this VGPU is running  |
 |scheduled&#95;to&#95;be&#95;resident&#95;on|`PGPU ref          `|_RO/runtime_   |The PGPU on which this VGPU is scheduled to run|
 |type                |`VGPU_type ref     `|_RO/runtime_   |Preset type for this VGPU               |
@@ -30537,6 +31041,31 @@ _Return Type:_ `string`
 
 value of the field
 
+#### RPC name: get&#95;extra&#95;args
+
+_Overview:_
+
+Get the extra&#95;args field of the given VGPU.
+
+_Signature:_
+
+```
+string get_extra_args (session ref session_id, VGPU ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`VGPU ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `string`
+
+value of the field
+
 #### RPC name: get&#95;GPU&#95;group
 
 _Overview:_
@@ -30584,6 +31113,31 @@ _Arguments:_
 _Minimum Role:_ read-only
 
 _Return Type:_ `(string -> string) map`
+
+value of the field
+
+#### RPC name: get&#95;PCI
+
+_Overview:_
+
+Get the PCI field of the given VGPU.
+
+_Signature:_
+
+```
+PCI ref get_PCI (session ref session_id, VGPU ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`VGPU ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `PCI ref`
 
 value of the field
 
@@ -30761,6 +31315,30 @@ _Minimum Role:_ pool-operator
 
 _Return Type:_ `void`
 
+#### RPC name: set&#95;extra&#95;args
+
+_Overview:_
+
+Set the extra&#95;args field of the given VGPU.
+
+_Signature:_
+
+```
+void set_extra_args (session ref session_id, VGPU ref self, string value)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`VGPU ref                    `|self                          |reference to the object                 |
+|`string                      `|value                         |New value to set                        |
+
+_Minimum Role:_ pool-operator
+
+_Return Type:_ `void`
+
 #### RPC name: set&#95;other&#95;config
 
 _Overview:_
@@ -30793,6 +31371,7 @@ A type of virtual GPU
 
 |Field               |Type                |Qualifier      |Description                             |
 |:-------------------|:-------------------|:--------------|:---------------------------------------|
+|compatible&#95;types&#95;in&#95;vm|`VGPU_type ref set `|_RO/runtime_   |List of VGPU types which are compatible in one VM|
 |enabled&#95;on&#95;GPU&#95;groups|`GPU_group ref set `|_RO/runtime_   |List of GPU groups in which at least one have this VGPU type enabled|
 |enabled&#95;on&#95;PGPUs|`PGPU ref set      `|_RO/runtime_   |List of PGPUs that have this VGPU type enabled|
 |experimental        |`bool              `|_RO/constructor_|Indicates whether VGPUs of this type should be considered experimental|
@@ -30871,6 +31450,31 @@ _Minimum Role:_ read-only
 _Return Type:_ `VGPU_type ref`
 
 reference to the object
+
+#### RPC name: get&#95;compatible&#95;types&#95;in&#95;vm
+
+_Overview:_
+
+Get the compatible&#95;types&#95;in&#95;vm field of the given VGPU&#95;type.
+
+_Signature:_
+
+```
+VGPU_type ref set get_compatible_types_in_vm (session ref session_id, VGPU_type ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`VGPU_type ref               `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `VGPU_type ref set`
+
+value of the field
 
 #### RPC name: get&#95;enabled&#95;on&#95;GPU&#95;groups
 
@@ -33349,6 +33953,7 @@ A virtual machine &#40;or 'guest'&#41;.
 |reference&#95;label |`string            `|_RO/constructor_|Textual reference to the template used to create a VM. This can be used by clients in need of an immutable reference to the template since the latter's uuid and name&#95;label may change, for example, after a package installation or upgrade.|
 |requires&#95;reboot |`bool              `|_RO/runtime_   |Indicates whether a VM requires a reboot in order to update its configuration, e.g. its memory allocation.|
 |resident&#95;on     |`host ref          `|_RO/runtime_   |the host the VM is currently resident on|
+|scheduled&#95;to&#95;be&#95;resident&#95;on|`host ref          `|_RO/runtime_   |the host on which the VM is due to be started/resumed/migrated. This acts as a memory reservation indicator|
 |shutdown&#95;delay  |`int               `|_RO/constructor_|The delay to wait before proceeding to the next order in the shutdown sequence &#40;seconds&#41;|
 |snapshot&#95;info   |`(string -> string) map`|_RO/runtime_   |Human&#45;readable information concerning this snapshot|
 |snapshot&#95;metadata|`string            `|_RO/runtime_   |Encoded information about the VM's metadata this is a snapshot of|
@@ -33673,7 +34278,7 @@ _Minimum Role:_ read-only
 
 _Return Type:_ `void`
 
-_Possible Error Codes:_ `HOST_NOT_ENOUGH_FREE_MEMORY`, `VM_REQUIRES_SR`, `VM_HOST_INCOMPATIBLE_VERSION`, `VM_HOST_INCOMPATIBLE_VIRTUAL_HARDWARE_PLATFORM_VERSION`
+_Possible Error Codes:_ `HOST_NOT_ENOUGH_FREE_MEMORY`, `HOST_NOT_ENOUGH_PCPUS`, `NETWORK_SRIOV_INSUFFICIENT_CAPACITY`, `HOST_NOT_LIVE`, `HOST_DISABLED`, `HOST_CANNOT_ATTACH_NETWORK`, `VM_HVM_REQUIRED`, `VM_REQUIRES_GPU`, `VM_REQUIRES_IOMMU`, `VM_REQUIRES_NETWORK`, `VM_REQUIRES_SR`, `VM_REQUIRES_VGPU`, `VM_HOST_INCOMPATIBLE_VERSION`, `VM_HOST_INCOMPATIBLE_VIRTUAL_HARDWARE_PLATFORM_VERSION`, `INVALID_VALUE`, `MEMORY_CONSTRAINT_VIOLATION`, `OPERATION_NOT_ALLOWED`, `VALUE_NOT_SUPPORTED`, `VM_INCOMPATIBLE_WITH_THIS_HOST`
 
 #### RPC name: assert&#95;can&#95;migrate
 
@@ -35844,6 +36449,31 @@ _Return Type:_ `host ref`
 
 value of the field
 
+#### RPC name: get&#95;scheduled&#95;to&#95;be&#95;resident&#95;on
+
+_Overview:_
+
+Get the scheduled&#95;to&#95;be&#95;resident&#95;on field of the given VM.
+
+_Signature:_
+
+```
+host ref get_scheduled_to_be_resident_on (session ref session_id, VM ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`VM ref                      `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `host ref`
+
+value of the field
+
 #### RPC name: get&#95;shutdown&#95;delay
 
 _Overview:_
@@ -37308,7 +37938,7 @@ _Return Type:_ `void`
 
 _Overview:_
 
-Set custom BIOS strings to this VM. VM will be given a default set of BIOS strings, only some of which can be overridden by the supplied values. Allowed keys are: 'bios&#45;vendor', 'bios&#45;version', 'system&#45;manufacturer', 'system&#45;product&#45;name', 'system&#45;version', 'system&#45;serial&#45;number', 'enclosure&#45;asset&#45;tag'
+Set custom BIOS strings to this VM. VM will be given a default set of BIOS strings, only some of which can be overridden by the supplied values. Allowed keys are: 'bios&#45;vendor', 'bios&#45;version', 'system&#45;manufacturer', 'system&#45;product&#45;name', 'system&#45;version', 'system&#45;serial&#45;number', 'enclosure&#45;asset&#45;tag', 'baseboard&#45;manufacturer', 'baseboard&#45;product&#45;name', 'baseboard&#45;version', 'baseboard&#45;serial&#45;number', 'baseboard&#45;asset&#45;tag', 'baseboard&#45;location&#45;in&#45;chassis', 'enclosure&#45;asset&#45;tag'
 
 _Signature:_
 
@@ -38529,6 +39159,8 @@ The reference of the newly created VM.
 _Possible Error Codes:_ `VM_BAD_POWER_STATE`, `SR_FULL`, `OPERATION_NOT_ALLOWED`
 
 #### RPC name: snapshot&#95;with&#95;quiesce
+
+**This message is removed.**
 
 _Overview:_
 

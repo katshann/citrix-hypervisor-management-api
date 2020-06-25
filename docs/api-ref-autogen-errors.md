@@ -452,7 +452,7 @@ No parameters.
 
 ### CANNOT&#95;FIND&#95;UPDATE
 
-The requested update could not be found. Please upload the update again. This can occur when you run xe update&#45;pool&#45;clean before xe update&#45;apply.
+The requested update could not be found. Please upload the update again. This can occur when you run xe update&#45;pool&#45;clean before xe update&#45;apply. 
 
 No parameters.
 
@@ -636,7 +636,7 @@ CLUSTER_HOST_NOT_JOINED(cluster_host)
 
 ### CLUSTER&#95;STACK&#95;IN&#95;USE
 
-The cluster stack is already in use.
+The cluster stack is still in use by at least one plugged PBD.
 
 _Signature:_
 
@@ -1731,6 +1731,22 @@ _Signature:_
 ```
 MEMORY_CONSTRAINT_VIOLATION(constraint)
 ```
+
+### MEMORY&#95;CONSTRAINT&#95;VIOLATION&#95;MAXPIN
+
+The dynamic memory range violates constraint static&#95;min = dynamic&#95;min = dynamic&#95;max = static&#95;max.
+
+_Signature:_
+
+```
+MEMORY_CONSTRAINT_VIOLATION_MAXPIN(reason)
+```
+
+### MEMORY&#95;CONSTRAINT&#95;VIOLATION&#95;ORDER
+
+The dynamic memory range violates constraint static&#95;min &lt;= dynamic&#95;min &lt;= dynamic&#95;max &lt;= static&#95;max.
+
+No parameters.
 
 ### MESSAGE&#95;DEPRECATED
 
@@ -2853,6 +2869,82 @@ No parameters.
 ### ROLE&#95;NOT&#95;FOUND
 
 Role cannot be found.
+
+No parameters.
+
+### SERVER&#95;CERTIFICATE&#95;CHAIN&#95;INVALID
+
+The provided intermediate certificates are not in a pem&#45;encoded X509.
+
+No parameters.
+
+### SERVER&#95;CERTIFICATE&#95;EXPIRED
+
+The provided certificate has expired.
+
+_Signature:_
+
+```
+SERVER_CERTIFICATE_EXPIRED(now, not_after)
+```
+
+### SERVER&#95;CERTIFICATE&#95;INVALID
+
+The provided certificate is not in a pem&#45;encoded X509.
+
+No parameters.
+
+### SERVER&#95;CERTIFICATE&#95;KEY&#95;ALGORITHM&#95;NOT&#95;SUPPORTED
+
+The provided key uses an unsupported algorithm.
+
+_Signature:_
+
+```
+SERVER_CERTIFICATE_KEY_ALGORITHM_NOT_SUPPORTED(algorithm_oid)
+```
+
+### SERVER&#95;CERTIFICATE&#95;KEY&#95;INVALID
+
+The provided key is not in a pem&#45;encoded PKCS&#35;8 format.
+
+No parameters.
+
+### SERVER&#95;CERTIFICATE&#95;KEY&#95;MISMATCH
+
+The provided key does not match the provided certificate's public key.
+
+No parameters.
+
+### SERVER&#95;CERTIFICATE&#95;KEY&#95;RSA&#95;LENGTH&#95;NOT&#95;SUPPORTED
+
+The provided RSA key does not have a length between 2048 and 4096.
+
+_Signature:_
+
+```
+SERVER_CERTIFICATE_KEY_RSA_LENGTH_NOT_SUPPORTED(length)
+```
+
+### SERVER&#95;CERTIFICATE&#95;KEY&#95;RSA&#95;MULTI&#95;NOT&#95;SUPPORTED
+
+The provided RSA key is using more than 2 primes, expecting only 2.
+
+No parameters.
+
+### SERVER&#95;CERTIFICATE&#95;NOT&#95;VALID&#95;YET
+
+The provided certificate is not valid yet.
+
+_Signature:_
+
+```
+SERVER_CERTIFICATE_NOT_VALID_YET(now, not_before)
+```
+
+### SERVER&#95;CERTIFICATE&#95;SIGNATURE&#95;NOT&#95;SUPPORTED
+
+The provided certificate is not using the SHA256 &#40;SHA2&#41; signature algorithm.
 
 No parameters.
 
