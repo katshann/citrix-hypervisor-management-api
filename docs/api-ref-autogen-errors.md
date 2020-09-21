@@ -1338,7 +1338,7 @@ No parameters.
 
 ### HOST&#95;UNKNOWN&#95;TO&#95;MASTER
 
-The master says the host is not known to it. Perhaps the Host was deleted from the master's database? Perhaps the slave is pointing to the wrong master?
+The master says the server is not known to it. Is the server in the master's database and pointing to the correct master? Are all servers using the same pool secret?
 
 _Signature:_
 
