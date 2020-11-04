@@ -139,7 +139,7 @@ Fields that are bound together are shown in the following table:
 
 The following figure represents bound fields (as specified above) diagramatically, using crow's foot notation to specify one-to-one, one-to-many or many-to-many relationships:
 
-![Class relationships](classes.png 'Class relationships')
+![Class relationships](media/classes.png 'Class relationships')
 
 ## Types
 
@@ -8501,7 +8501,7 @@ _Return Type:_ `void`
 
 _Overview:_
 
-Set the power&#45;on&#45;mode, host, user and password 
+Set the power&#45;on&#45;mode, host, user and password
 
 _Signature:_
 
