@@ -317,6 +317,7 @@ The following enumeration types are used:
 |`enum pool_allowed_operations          `|                                        |
 |:---------------------------------------|:---------------------------------------|
 |`cluster_create                        `|Indicates this pool is in the process of creating a cluster|
+|`designate_new_master                  `|Indicates this pool is in the process of changing master|
 |`ha_disable                            `|Indicates this pool is in the process of disabling HA|
 |`ha_enable                             `|Indicates this pool is in the process of enabling HA|
 
@@ -15588,6 +15589,7 @@ Pool&#45;wide information
 |ha&#95;statefiles   |`string set        `|_RO/runtime_   |HA statefile VDIs in use                |
 |health&#95;check&#95;config|`(string -> string) map`|_RW_           |Configuration for the automatic health check feature|
 |igmp&#95;snooping&#95;enabled|`bool              `|_RO/runtime_   |true if IGMP snooping is enabled in the pool, false otherwise.|
+|is&#95;psr&#95;pending|`bool              `|_RW_           |True if either a PSR is running or we are waiting for a PSR to be re&#45;run|
 |live&#95;patching&#95;disabled|`bool              `|_RW_           |The pool&#45;wide flag to show if the live patching feauture is disabled or not.|
 |master              |`host ref          `|_RO/runtime_   |The host that is pool master            |
 |metadata&#95;VDIs   |`VDI ref set       `|_RO/runtime_   |The set of currently known metadata VDIs for this pool|
@@ -16850,6 +16852,31 @@ _Return Type:_ `bool`
 
 value of the field
 
+#### RPC name: get&#95;is&#95;psr&#95;pending
+
+_Overview:_
+
+Get the is&#95;psr&#95;pending field of the given pool.
+
+_Signature:_
+
+```
+bool get_is_psr_pending (session ref session_id, pool ref self)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`pool ref                    `|self                          |reference to the object                 |
+
+_Minimum Role:_ read-only
+
+_Return Type:_ `bool`
+
+value of the field
+
 #### RPC name: get&#95;license&#95;state
 
 _Overview:_
@@ -17798,6 +17825,24 @@ _Return Type:_ `(VM ref -> string set) map`
 
 The list of vm migration recommendations
 
+#### RPC name: rotate&#95;secret
+
+_Overview:_
+
+
+
+_Signature:_
+
+```
+void rotate_secret (session ref session_id)
+```
+
+_Minimum Role:_ pool-admin
+
+_Return Type:_ `void`
+
+_Possible Error Codes:_ `INTERNAL_ERROR`, `HOST_IS_SLAVE`, `CANNOT_CONTACT_HOST`, `HA_IS_ENABLED`, `NOT_SUPPORTED_DURING_UPGRADE`
+
 #### RPC name: send&#95;test&#95;post
 
 _Overview:_
@@ -18011,6 +18056,30 @@ _Arguments:_
 |session ref                   |session_id                    |Reference to a valid session            |
 |`pool ref                    `|self                          |The pool                                |
 |`bool                        `|value                         |Enable or disable IGMP Snooping on the pool|
+
+_Minimum Role:_ pool-operator
+
+_Return Type:_ `void`
+
+#### RPC name: set&#95;is&#95;psr&#95;pending
+
+_Overview:_
+
+Set the is&#95;psr&#95;pending field of the given pool.
+
+_Signature:_
+
+```
+void set_is_psr_pending (session ref session_id, pool ref self, bool value)
+```
+
+_Arguments:_
+
+|type                          |name                          |description                             |
+|:-----------------------------|:-----------------------------|:---------------------------------------|
+|session ref                   |session_id                    |Reference to a valid session            |
+|`pool ref                    `|self                          |reference to the object                 |
+|`bool                        `|value                         |New value to set                        |
 
 _Minimum Role:_ pool-operator
 
