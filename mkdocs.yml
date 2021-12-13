@@ -65,9 +65,6 @@ plugins:
 
 # Page tree
 nav:
-- Versions:
-  - 8.1: https://developer-docs.citrix.com/projects/citrix-hypervisor-management-api/en/8.1/
-  - 8.0: https://developer-docs.citrix.com/projects/citrix-hypervisor-management-api/en/8.0/
 - Citrix Hypervisor Management API Reference: index.md
 - Wire Protocol for Remote API Calls: wire-protocol.md
 - VM Lifecycle: vm-lifecycle.md

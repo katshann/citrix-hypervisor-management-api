@@ -318,7 +318,7 @@ BRIDGE_NOT_AVAILABLE(bridge)
 
 ### CANNOT&#95;ADD&#95;TUNNEL&#95;TO&#95;BOND&#95;SLAVE
 
-This PIF is a bond slave and cannot have a tunnel on it.
+This PIF is a bond member and cannot have a tunnel on it.
 
 _Signature:_
 
@@ -348,7 +348,7 @@ CANNOT_ADD_TUNNEL_TO_VLAN_ON_SRIOV_LOGICAL(PIF)
 
 ### CANNOT&#95;ADD&#95;VLAN&#95;TO&#95;BOND&#95;SLAVE
 
-This PIF is a bond slave and cannot have a VLAN on it.
+This PIF is a bond member and cannot have a VLAN on it.
 
 _Signature:_
 
@@ -468,7 +468,7 @@ CANNOT_FORGET_SRIOV_LOGICAL(PIF)
 
 ### CANNOT&#95;PLUG&#95;BOND&#95;SLAVE
 
-This PIF is a bond slave and cannot be plugged.
+This PIF is a bond member and cannot be plugged.
 
 _Signature:_
 
@@ -1248,7 +1248,7 @@ HOST_IS_LIVE(host)
 
 ### HOST&#95;IS&#95;SLAVE
 
-You cannot make regular API calls directly on a slave. Please pass API calls via the master host.
+You cannot make regular API calls directly on a pool member. Please pass API calls via the master host.
 
 _Signature:_
 
@@ -1258,13 +1258,13 @@ HOST_IS_SLAVE(Master IP address)
 
 ### HOST&#95;ITS&#95;OWN&#95;SLAVE
 
-The host is its own slave. Please use pool&#45;emergency&#45;transition&#45;to&#45;master or pool&#45;emergency&#45;reset&#45;master.
+The host is its own pool member. Please use pool&#45;emergency&#45;transition&#45;to&#45;master or pool&#45;emergency&#45;reset&#45;master.
 
 No parameters.
 
 ### HOST&#95;MASTER&#95;CANNOT&#95;TALK&#95;BACK
 
-The master reports that it cannot talk back to the slave on the supplied management IP address.
+The master reports that it cannot talk back to the pool member on the supplied management IP address.
 
 _Signature:_
 
@@ -2029,6 +2029,16 @@ No parameters.
 The upper limit of active redo log instances was reached.
 
 No parameters.
+
+### NVIDIA&#95;SRIOV&#95;MISCONFIGURED
+
+The NVidia GPU is not configured for SR&#45;IOV as expected
+
+_Signature:_
+
+```
+NVIDIA_SRIOV_MISCONFIGURED(host, device_name)
+```
 
 ### NVIDIA&#95;TOOLS&#95;ERROR
 
@@ -2976,7 +2986,7 @@ SESSION_NOT_REGISTERED(handle)
 
 ### SLAVE&#95;REQUIRES&#95;MANAGEMENT&#95;INTERFACE
 
-The management interface on a slave cannot be disabled because the slave would enter emergency mode.
+The management interface on a pool member cannot be disabled because the pool member would enter emergency mode.
 
 No parameters.
 
@@ -3776,6 +3786,16 @@ _Signature:_
 
 ```
 VGPU_GUEST_DRIVER_LIMIT(reason, vm, host)
+```
+
+### VGPU&#95;SUSPENSION&#95;NOT&#95;SUPPORTED
+
+The VGPU configuration does not support suspension.
+
+_Signature:_
+
+```
+VGPU_SUSPENSION_NOT_SUPPORTED(reason, vgpu, host)
 ```
 
 ### VGPU&#95;TYPE&#95;NOT&#95;COMPATIBLE
